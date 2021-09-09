@@ -1,10 +1,10 @@
 import * as express from 'express';
-import pemsaRoute from './pesma/pesma.route';
+import pesmaRoute from './pesma/pesma.route';
 import userAuth from './korisnik/korisnik.route';
 
 const router = express.Router();
 
 router.use('/user', userAuth);
-router.use('/pesma', pemsaRoute)
+router.use('/pesma', pesmaRoute)
 
 export default router;
