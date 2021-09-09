@@ -16,7 +16,7 @@ export default class ApiResponse {
     res: Response,
     data: object,
     status: number = 200,
-    cookie: any = null ,
+    cookie: ICookie | null = null,
   ) => {
     res.status(status);
     if (cookie) {
@@ -32,7 +32,7 @@ export default class ApiResponse {
     res: Response,
     status: number = 400,
     error: string = httpStatusCodes.getStatusText(status),
-    override: any = null,
+    override: IOverrideRequest | null = null,
   ) => {
     res.status(status).json({
       override,

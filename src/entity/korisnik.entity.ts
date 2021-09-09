@@ -5,15 +5,12 @@ export class Korisnik{
 
     @PrimaryGeneratedColumn({ type: 'bigint' })
     id: number;
-    @Column()
+    @Column('text')
     korisnicko_ime: string;
-    @Column()
+    @Column('text')
     sifra: string;
-    @Column()
+    @Column('text')
     ime: string;
-    @Column()
+    @Column('text')
     prezime: string;
-
-
-
 }

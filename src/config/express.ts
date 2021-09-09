@@ -2,6 +2,7 @@ import * as bodyParser from 'body-parser';
 import express from 'express';
 const morgan = require('morgan');
 
+import authenticate from '../middlewares/authenticate';
 import application from '../constants/application';
 import indexRoute from '../routes/index.route';
 import joiErrorHandler from '../middlewares/joiErrorHandler';
@@ -13,6 +14,8 @@ require('dotenv').config();
 app.use(bodyParser.json());
 
 app.use(morgan('dev'));
+
+app.use(authenticate);
 
 // Router
 app.use(application.url.base, indexRoute);

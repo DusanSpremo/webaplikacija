@@ -12,4 +12,15 @@ router.post(
   userController.register,
 );
 
+router.post(
+  '/login',
+  celebrate(korisnikSchema.login),
+  userController.login,
+);
+
+router.get(
+  '/testAuth',
+  userController.testAuth
+)
+
 export default router;

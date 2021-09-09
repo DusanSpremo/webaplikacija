@@ -8,4 +8,10 @@ export default {
       prezime: Joi.string().min(1).max(100).required(),
     },
   },
+  login: {
+    [Segments.BODY]: {
+      korisnickoime: Joi.string().required(),
+      sifra: Joi.string().required(),
+    },
+  }
   };
