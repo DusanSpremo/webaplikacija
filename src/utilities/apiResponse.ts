@@ -14,7 +14,7 @@ export interface ICookie {
 export default class ApiResponse {
   static result = (
     res: Response,
-    data: object,
+    data: unknown,
     status: number = 200,
     cookie: ICookie | null = null,
   ) => {
