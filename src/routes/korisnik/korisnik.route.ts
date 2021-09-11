@@ -18,9 +18,5 @@ router.post(
   userController.login,
 );
 
-router.get(
-  '/testAuth',
-  userController.testAuth
-)
 
 export default router;

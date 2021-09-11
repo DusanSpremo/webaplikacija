@@ -6,6 +6,7 @@ export default {
       sifra: Joi.string().min(6).max(250).required(),
       ime: Joi.string().min(1).max(100).required(),
       prezime: Joi.string().min(1).max(100).required(),
+      email: Joi.string().email().required()
     },
   },
   login: {

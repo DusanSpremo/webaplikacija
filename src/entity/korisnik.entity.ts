@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Pesma } from "./pesma.entity";
+import { RejtingPesme } from "./rejting_pesme.entity";
 
 @Entity('korisnik')
 export class Korisnik{
@@ -13,4 +15,10 @@ export class Korisnik{
     ime: string;
     @Column('text')
     prezime: string;
+    @Column('text')
+    email: string;
+    @OneToMany(type => Pesma, pesma => pesma.korisnik)
+    pesme: Pesma[];
+    @OneToMany(type => RejtingPesme, rejtingPesme => rejtingPesme.korisnik)
+    rejtinzi: RejtingPesme[];
 }

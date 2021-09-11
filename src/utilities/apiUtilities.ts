@@ -8,7 +8,7 @@ const extractQueryForRequest = (req: Request, query: string) => {
   return [];
 };
 
-const extractTokenFromRequest = (req: Request, key: string) => {
+const extractTokenFromRequest = (req: Request) => {
   if (req.headers.authorization) {
     return req.headers.authorization;
   }

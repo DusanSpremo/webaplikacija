@@ -15,7 +15,7 @@ const login: IController = async (req, res) => {
     const responseContent = {
       token: await generateJWTToken(
         constants.Cookie.KEY_USER_ID,
-        req.body.korisnickoime,
+        user.id,
       )
     };
     apiResponse.result(res, responseContent, httpStatusCodes.OK);
@@ -35,7 +35,8 @@ const register: IController = async (req, res) => {
       req.body.korisnickoime,
       req.body.sifra,
       req.body.ime,
-      req.body.prezime
+      req.body.prezime,
+      req.body.email
     );
   } catch (e) {
     apiResponse.error(
@@ -52,10 +53,6 @@ const register: IController = async (req, res) => {
   }
 };
 
-const testAuth: IController = async(req, res) => {
-  apiResponse.result(res, {code: 'radiiii'}, httpStatusCodes.OK);
-};
-
 const self: IController = async (req, res) => {
     apiResponse.result(res, req.body, httpStatusCodes.OK);
 };
@@ -64,5 +61,4 @@ export default {
  register,
  self,
  login,
- testAuth
-};
+ };

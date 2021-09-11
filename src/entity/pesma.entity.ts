@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm";
+import { Korisnik } from "./korisnik.entity";
+import { RejtingPesme } from "./rejting_pesme.entity";
 
 @Entity('pesma')
 export class Pesma{
@@ -13,4 +15,8 @@ export class Pesma{
     ime_autora: string;
     @Column('text')
     tekst: string;
+    @ManyToOne(type => Korisnik, korisnik => korisnik.pesme, {eager : true})
+    korisnik: Korisnik;
+    @OneToMany(type => RejtingPesme, rejtingPesme => rejtingPesme.pesma)
+    rejtinzi: RejtingPesme[];
 }

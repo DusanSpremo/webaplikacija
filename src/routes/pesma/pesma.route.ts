@@ -6,15 +6,25 @@ const router = express.Router();
 import pesmaControllers from '../../controllers/pesma.controllers';
 
 router.get(
-  '/allSongs',
-  pesmaControllers.getAllSongs
+  '/allSongsOrdered',
+  pesmaControllers.getAllSongsOrderedByRaiting
+)
+
+router.get(
+  '/allSongsOrderedForUser',
+  pesmaControllers.getAllSongsOrderedByRaitingForUser
 )
 
 router.delete(
     '/deleteSong/:idPesma',
     pesmaControllers.deleteSong
-  )
+)
 
+router.put(
+  '/updateSong/:idPesma',
+  celebrate(pesmaSchema.addSong),
+  pesmaControllers.updateSong
+)
 
 router.post('/addSong',
 celebrate(pesmaSchema.addSong),

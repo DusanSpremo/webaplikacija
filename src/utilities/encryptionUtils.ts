@@ -2,8 +2,8 @@ import application from '../constants/application';
 
 const jwt = require('jsonwebtoken');
 
-const generateJWTToken = async (key: string, value: string) => {
-  const data: { [key: string]: string } = {};
+const generateJWTToken = async (key: string, value: number) => {
+  const data: { [key: string]: number } = {};
   data[key] = value;
   return await jwt.sign({ data }, application.env.authSecret, {
     expiresIn: application.timers.userCookieExpiry,

@@ -28,8 +28,7 @@ export default async (
     ) === -1
   ) {
     const authorizationHeader: string | null = extractTokenFromRequest(
-      req,
-      Constants.Cookie.COOKIE_USER,
+      req
     );
     if (authorizationHeader) {
       const decoded = await verifyToken(authorizationHeader.substring(7));
