@@ -5,5 +5,6 @@ export default {
   EROR_WHILE_ADDING_ENTITY: 'Error ocured while trying to add entity',
   EROR_WHILE_DELETING_ENTITY: 'Error ocured while trying to delete entity',
   EROR_WHILE_UPDATING_ENTITY: 'Error ocured while trying to update entity',
-  USER_IS_NOT_OWNER_OF_SPECIFIED_SONG: 'User is not owner of specified song'
+  USER_IS_NOT_OWNER_OF_SPECIFIED_SONG: 'User is not owner of specified song',
+  USER_RATING_FOR_SPECIFIED_SONG_EXISTS: 'User rating for specified song already exists'
 };

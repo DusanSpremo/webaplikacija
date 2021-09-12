@@ -61,4 +61,5 @@ export default {
  register,
  self,
  login,
- };
+ 
+};

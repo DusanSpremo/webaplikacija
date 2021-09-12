@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm";
+import { Komentar } from "./komenentar.entity";
 import { Korisnik } from "./korisnik.entity";
 import { RejtingPesme } from "./rejting_pesme.entity";
 
@@ -19,4 +20,6 @@ export class Pesma{
     korisnik: Korisnik;
     @OneToMany(type => RejtingPesme, rejtingPesme => rejtingPesme.pesma)
     rejtinzi: RejtingPesme[];
+    @OneToMany(type => Komentar, komentar => komentar.pesma)
+    komentari: Komentar[];
 }

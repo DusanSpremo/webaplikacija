@@ -4,13 +4,15 @@ import { Korisnik } from '../entity/korisnik.entity';
 import { Pesma } from '../entity/pesma.entity';
 import { RejtingPesme } from '../entity/rejting_pesme.entity';
 
-const getAllSongsOrderedByRaiting = async () => {
+const searchAllSongsOrderedByRaiting = async (imeAutora: unknown, nazivizvodjaca: unknown) => {
   try {
+    console.log(imeAutora);
     const result = await getRepository(Pesma).createQueryBuilder("pesma")
     .addSelect("CONCAT(korisnik.ime, ' ', korisnik.prezime)", "imePrezimeKorisnika")
     .addSelect("AVG(COALESCE(rejting_pesme.rejting, 0))", "avgRejting")
     .leftJoin(RejtingPesme, "rejting_pesme", "pesma.id = rejting_pesme.pesma")
     .leftJoin(Korisnik, "korisnik", "pesma.korisnikId = korisnik.id")
+    .where("(((:nazivizvodjaca IS NULL OR :nazivizvodjaca = '') OR LOWER(TRIM(pesma.naziv_izvodjaca)) LIKE CONCAT('%', LOWER(TRIM(:nazivizvodjaca)), '%')) AND ((:imeAutora IS NULL OR :imeAutora = '') OR LOWER(TRIM(pesma.ime_autora)) LIKE CONCAT('%', LOWER(TRIM(:imeAutora)), '%')))", {nazivizvodjaca, imeAutora})
     .groupBy("pesma.id")
     .orderBy("avgRejting", "DESC").getRawMany();
     console.log(result);
@@ -117,6 +119,6 @@ export default {
   addSong,
   deleteSong,
   updateSong,
-  getAllSongsOrderedByRaiting,
-  getAllSongsOrgeredByRaitingForUser
+  getAllSongsOrgeredByRaitingForUser,
+  searchAllSongsOrderedByRaiting
 };

@@ -6,8 +6,8 @@ const router = express.Router();
 import pesmaControllers from '../../controllers/pesma.controllers';
 
 router.get(
-  '/allSongsOrdered',
-  pesmaControllers.getAllSongsOrderedByRaiting
+  '/search',
+  pesmaControllers.searchAllSongsOrderedByRaiting
 )
 
 router.get(

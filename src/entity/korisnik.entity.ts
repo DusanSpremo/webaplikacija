@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Komentar } from "./komenentar.entity";
 import { Pesma } from "./pesma.entity";
 import { RejtingPesme } from "./rejting_pesme.entity";
 
@@ -21,4 +22,7 @@ export class Korisnik{
     pesme: Pesma[];
     @OneToMany(type => RejtingPesme, rejtingPesme => rejtingPesme.korisnik)
     rejtinzi: RejtingPesme[];
+    @OneToMany(type => Komentar, komentar => komentar.pesma)
+    komentari: Komentar[];
+
 }

@@ -16,6 +16,7 @@ const login = async (
   sifra: string
 ) : Promise<Korisnik | null> => {
   try {
+    console.log (korisnickoIme);
     const pronadeniKorisnik: Korisnik | undefined = await getRepository(Korisnik).findOne({ korisnicko_ime : korisnickoIme, sifra });
     if (pronadeniKorisnik === undefined) {
       return null;

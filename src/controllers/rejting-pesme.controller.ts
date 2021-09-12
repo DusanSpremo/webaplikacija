@@ -41,7 +41,40 @@ const addRating: IController = async (req, res) => {
       apiResponse.error(res, httpStatusCodes.BAD_REQUEST);
     }
   };
+
+  const updateRating: IController = async (req, res) => {
+    let rating;
+    const authorizationHeader: string | null = extractTokenFromRequest(
+      req
+    );
+    if (!authorizationHeader) {
+      apiResponse.error(
+        res,
+        httpStatusCodes.BAD_REQUEST,
+        constants.ErrorCodes.INVALID_CREDENTIALS,
+      );
+      return;
+    }
+    const token = await verifyToken(authorizationHeader.substring(7));
+
+    try {
+      rating = await rejtingPesmeService.updateSongRating(+req.params.idPesma, req.body.rejting, token);
+    } catch (e) {
+      apiResponse.error(
+        res,
+        httpStatusCodes.BAD_REQUEST,
+        constants.ErrorCodes.EROR_WHILE_UPDATING_ENTITY,
+      );
+      return;
+    }
+    if (rating) {
+      apiResponse.result(res, rating, httpStatusCodes.CREATED);
+    } else {
+      apiResponse.error(res, httpStatusCodes.BAD_REQUEST);
+    }
+  };
 export default {
     self,
-    addRating
+    addRating,
+    updateRating
 };

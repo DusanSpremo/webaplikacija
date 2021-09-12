@@ -9,4 +9,8 @@ router.post('/addRating/:idPesma',
 celebrate(rejtingPesmeSchema.addRating),
 rejtingPesmeController.addRating)
 
+router.put('/updateRating/:idPesma',
+celebrate(rejtingPesmeSchema.addRating),
+rejtingPesmeController.updateRating)
+
 export default router;
